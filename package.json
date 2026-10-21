@@ -1,0 +1,49 @@
+{
+  "name": "dsh-compress-pacing",
+  "version": "0.1.0",
+  "description": "Paces context compression in DeepSeek Harness: one compress call per window (plus a single cleanup call after a partial rejection), because every compress re-sends the whole context and invalidates the prefix cache. 压缩一次就重发一次上下文，别把压缩拆成一串小调用。",
+  "type": "module",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "src",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "engines": {
+    "node": ">=22.19.0",
+    "dsh": ">=0.2.0-0"
+  },
+  "peerDependencies": {
+    "cordis": ">=4.0.0",
+    "@deepseek-ai/dsh-tools": ">=0.2.0-0"
+  },
+  "scripts": {
+    "build": "node --check src/index.js",
+    "prepack": "npm run build"
+  },
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "compaction",
+    "compress",
+    "context",
+    "prompt-cache",
+    "plugin"
+  ],
+  "license": "MIT"
+}

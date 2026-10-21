@@ -1,0 +1,3 @@
+- insert:
+    - id: compress-pacing
+      name: 'dsh-compress-pacing'
